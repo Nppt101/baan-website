@@ -10,13 +10,21 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- ☰ เมนูมือถือ -->
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <ul>
       <li><a href="index.html#projects">🏠 กลับหน้าแรก</a></li>
     </ul>
   </nav>
 
+  <!-- ปุ่มกลับหน้าแรกแยกต่างหากบนมือถือ -->
+  <div class="mobile-back">
+    <a href="index.html#projects">🏠 กลับหน้าแรก</a>
+  </div>
 
   <section class="section">
     <h2>รายละเอียดบ้าน 2</h2>
@@ -36,8 +44,7 @@
   <section class="section">
     <h2>วิดีโอแนะนำบ้าน 2</h2>
     <div class="video-wrapper">
-      <video autoplay muted loop playsinline controls 
-             poster="images/video-cover.jpg">
+      <video autoplay muted loop playsinline controls poster="images/video-cover.jpg">
         <source src="videos/pp2.mp4" type="video/mp4" />
       </video>
     </div>

@@ -242,3 +242,25 @@ footer {
     padding: 0.3rem 0.7rem;
   }
 }
+
+.mobile-back {
+  display: none;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .mobile-back {
+    display: block;
+  }
+
+  .mobile-back a {
+    background: #2980b9;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+  }
+}
