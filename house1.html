@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="บริการออกแบบบ้าน ก่อสร้างบ้าน พร้อมผลงานและรายละเอียดบ้านแต่ละหลัง">
+  <meta name="keywords" content="ออกแบบบ้าน, บ้านชั้นเดียว, บ้านสองชั้น, รับเหมาก่อสร้าง">
+  <meta name="author" content="บริษัทของเรา">
+  <title>บ้าน 1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="homepage.html#projects">🏠 กลับหน้าแรก</a></li>
+    </ul>
+  </nav>
+
+  <section class="section">
+    <h2>รายละเอียดบ้าน 1</h2>
+    <img src="images/house1.jpg" alt="บ้าน 1" style="max-width: 100%; border-radius: 10px;" />
+    <p>บ้านสองชั้นสไตล์โมเดิร์น พื้นที่ใช้สอยกว่า 200 ตร.ม. พร้อมห้องนั่งเล่นและห้องทำงาน</p>
+  </section>
+
+  <section class="section">
+    <h2>แกลเลอรีบ้าน</h2>
+    <div class="carousel">
+      <button class="nav-btn prev">&#10094;</button>
+      <img class="carousel-image" id="carousel-image" src="images/house1.jpg" alt="บ้าน 1" onclick="toggleFullScreen(this)">
+      <button class="nav-btn next">&#10095;</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>วิดีโอแนะนำบ้าน 1</h2>
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline controls 
+             poster="images/video-cover.jpg">
+        <source src="videos/pp.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 บริษัทของเรา</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const images = [
+        'images/house1.jpg',
+        'images/house1_2.jpg',
+        'images/house1_3.jpg'
+      ];
+
+      let currentIndex = 0;
+      const carouselImg = document.getElementById('carousel-image');
+
+      document.querySelector('.prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        carouselImg.src = images[currentIndex];
+      });
+
+      document.querySelector('.next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        carouselImg.src = images[currentIndex];
+      });
+
+      window.toggleFullScreen = function (image) {
+        if (!document.fullscreenElement) {
+          image.requestFullscreen().catch(err => {
+            alert(`เกิดข้อผิดพลาด: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>
