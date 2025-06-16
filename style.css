@@ -4,6 +4,7 @@ body {
   margin: 0;
   line-height: 1.6;
   font-size: 16px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Navbar */
@@ -11,20 +12,47 @@ body {
   position: sticky;
   top: 0;
   background: #1f1f1f;
-  padding: 1rem;
+  padding: 1.2rem 1.5rem;
   z-index: 100;
 }
 
-.menu-toggle {
-  display: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+/* ปุ่มย้อนกลับ */
+.back-button {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ☰ เมนู */
+.menu-toggle {
+  font-size: 1.6rem;
+  color: white;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* รายการเมนู */
 .navbar ul {
   display: flex;
   justify-content: center;
@@ -33,7 +61,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .navbar a {
   color: white;
   text-decoration: none;
@@ -47,13 +74,11 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .overlay {
   position: absolute;
   top: 50%;
@@ -70,6 +95,9 @@ body {
   padding: 4rem 2rem;
   text-align: center;
 }
+.section h2 {
+  margin-bottom: 1rem;
+}
 
 /* Cards */
 .cards {
@@ -78,7 +106,6 @@ body {
   gap: 2rem;
   justify-content: center;
 }
-
 .card {
   background: #fff;
   border-radius: 10px;
@@ -87,14 +114,15 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   transition: transform 0.3s;
 }
-
 .card:hover {
   transform: translateY(-5px);
 }
-
 .card img {
   width: 100%;
   border-radius: 5px;
+}
+.card p {
+  margin: 0.5rem 0;
 }
 
 /* ปุ่ม */
@@ -108,7 +136,6 @@ body {
   border-radius: 5px;
   transition: background 0.3s ease;
 }
-
 .button:hover {
   background: #3498db;
 }
@@ -132,7 +159,6 @@ footer {
   margin: 2rem auto;
   text-align: center;
 }
-
 .video-wrapper video {
   width: 100%;
   border-radius: 10px;
@@ -147,7 +173,6 @@ footer {
   margin: auto;
   text-align: center;
 }
-
 .carousel-image {
   width: 100%;
   border-radius: 10px;
@@ -155,7 +180,9 @@ footer {
   transition: transform 0.3s ease, opacity 0.3s ease;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
-
+.carousel-image.fade {
+  opacity: 0.3;
+}
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -170,35 +197,45 @@ footer {
   border-radius: 50%;
   transition: background 0.3s ease;
 }
-
 .nav-btn:hover {
   background: rgba(0,0,0,0.8);
 }
-
 .prev {
   left: 0;
 }
-
 .next {
   right: 0;
 }
+.carousel-counter {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 500;
+  text-align: center;
+}
 
-/* Responsive */
+/* Responsive: มือถือ */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-inner {
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   .navbar ul {
     display: none;
     flex-direction: column;
     background: #1f1f1f;
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    top: 55px;
     left: 0;
     width: 100%;
-    padding: 1rem;
-    z-index: 99;
+    padding: 1.5rem 2rem;
+    z-index: 200;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
   .navbar ul.show {
@@ -222,45 +259,38 @@ footer {
   .video-wrapper video {
     border-radius: 5px;
   }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
 
   .nav-btn {
     font-size: 1.5rem;
     padding: 0.3rem 0.7rem;
   }
-}
 
-.mobile-back {
-  display: none;
-  text-align: center;
-  margin: 1rem 0;
-}
-
-@media (max-width: 768px) {
-  .mobile-back {
-    display: block;
+  .navbar ul li {
+    padding: 1rem 0;
+    text-align: left;
   }
 
-  .mobile-back a {
-    background: #2980b9;
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
+  .navbar ul a {
+    font-size: 1.2rem;
+  }
+
+  /* ให้ปุ่มกลับอยู่ขวาแม้บนมือถือ */
+  .back-button {
+    margin-left: auto;
+  }
+}
+
+/* Responsive: เดสก์ท็อป */
+@media (min-width: 769px) {
+  .navbar {
+    padding: 1.2rem 2rem;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .back-button {
+    margin-left: auto;
   }
 }
