@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // ✅ ตรวจชื่อไฟล์เพื่อตั้งรูป carousel ตามหน้า
   const images = window.location.href.includes('house1')
     ? ['images/house1.jpg', 'images/house1_2.jpg', 'images/house1_3.jpg']
     : window.location.href.includes('house2')
@@ -9,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentIndex = 0;
   const carouselImg = document.getElementById('carousel-image');
   const counter = document.createElement('div');
-
-  // ✅ สร้างตัวนับรูป "1/3"
   counter.className = 'carousel-counter';
   if (carouselImg?.parentNode) {
     carouselImg.parentNode.appendChild(counter);
@@ -20,12 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!carouselImg || images.length === 0) return;
     carouselImg.src = images[currentIndex];
     carouselImg.alt = `ภาพที่ ${currentIndex + 1}`;
-    if (counter) {
-      counter.textContent = `${currentIndex + 1} / ${images.length}`;
-    }
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
   }
 
-  // ✅ ป้องกันการคลิกเร็วเกินไป
   let lastClickTime = 0;
   function throttleClick(callback) {
     const now = Date.now();
@@ -35,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // ✅ ปุ่มก่อนหน้า
   document.querySelector('.prev')?.addEventListener('click', () => {
     throttleClick(() => {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
@@ -43,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ✅ ปุ่มถัดไป
   document.querySelector('.next')?.addEventListener('click', () => {
     throttleClick(() => {
       currentIndex = (currentIndex + 1) % images.length;
@@ -51,25 +43,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ✅ เปิด/ปิด Fullscreen
-  window.toggleFullScreen = function (image) {
-    if (!document.fullscreenElement) {
-      image.requestFullscreen().catch(err => {
-        alert(`เกิดข้อผิดพลาด: ${err.message}`);
-      });
-    } else {
-      document.exitFullscreen();
-    }
-  };
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  if (lightbox && lightboxImg && carouselImg) {
+    carouselImg.addEventListener('dblclick', () => {
+      lightboxImg.src = carouselImg.src;
+      lightbox.classList.add('show');
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+    });
+  }
 
-  // ✅ Toggle ☰ เมนูมือถือ
   window.toggleMenu = function () {
-    const nav = document.querySelector('.navbar ul');
-    nav?.classList.toggle('show');
+    document.querySelector('.navbar ul')?.classList.toggle('show');
   };
 
-  // ✅ แสดงภาพแรก
   if (carouselImg && images.length > 0) {
     updateCarousel();
+  }
+
+  if (typeof AOS !== 'undefined') {
+    AOS.init();
   }
 });
